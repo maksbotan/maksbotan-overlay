@@ -32,6 +32,7 @@ RDEPEND="dev-libs/dbus-glib
 	dev-python/gnome-keyring-python
 	dev-python/notify-python
 	dev-python/pyxdg
+	dev-python/configglue
 "
 
 
