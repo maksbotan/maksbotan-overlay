@@ -25,6 +25,13 @@ RDEPEND="dev-libs/dbus-glib
 	)
 	dev-python/ubuntuone-storage-protocol 
 	dev-python/oauth 
+	dev-python/pyinotify
+	dev-python/twisted-names
+	dev-python/twisted-web
+	dev-python/dbus-python
+	dev-python/gnome-keyring-python
+	dev-python/notify-python
+	dev-python/pyxdg
 "
 
 
