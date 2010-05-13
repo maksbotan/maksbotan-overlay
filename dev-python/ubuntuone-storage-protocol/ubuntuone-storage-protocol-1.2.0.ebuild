@@ -4,7 +4,10 @@
 
 EAPI=2
 
-inherit distutils
+SUPPORT_PYTHON_ABIS="1"
+PYTHON_DEPEND="*:2.6"
+
+inherit distutils python
 
 DESCRIPTION="Ubuntu One GTK integration widgets"
 HOMEPAGE="http://one.ubuntu.com"
@@ -21,3 +24,7 @@ RDEPEND="
 	dev-python/pyxdg
 	dev-python/twisted
 	dev-python/oauth"
+
+pkg_setup() {
+	USE_PYTHON=`echo $USE_PYTHON | sed 's/2.5//'`
+}
