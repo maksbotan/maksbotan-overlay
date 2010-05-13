@@ -6,7 +6,7 @@ EAPI=2
 
 SUPPORT_PYTHON_ABIS="1"
 PYTHON_DEPEND="*:2.6"
-USE_PYTHON=${${USE_PYTHON/2.5/}/2.4/}
+USE_PYTHON=${USE_PYTHON/2.[45]/}
 
 inherit distutils python
 
