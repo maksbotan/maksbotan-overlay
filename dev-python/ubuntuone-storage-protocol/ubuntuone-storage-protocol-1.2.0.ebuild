@@ -6,6 +6,7 @@ EAPI=2
 
 SUPPORT_PYTHON_ABIS="1"
 PYTHON_DEPEND="*:2.6"
+USE_PYTHON=${${USE_PYTHON/2.5/}/2.4/}
 
 inherit distutils python
 
@@ -24,7 +25,3 @@ RDEPEND="
 	dev-python/pyxdg
 	dev-python/twisted
 	dev-python/oauth"
-
-pkg_setup() {
-	USE_PYTHON=`echo $USE_PYTHON | sed 's/2.5//'`
-}
