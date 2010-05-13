@@ -1,0 +1,123 @@
+From 7c3e577fd89475ff7dba8326bf4105e143b2a31a Mon Sep 17 00:00:00 2001
+From: Ingo Krabbe <ingo.krabbe@eoa.de>
+Date: Tue, 22 Dec 2009 07:56:35 +0100
+Subject: [PATCH] kernel 2.6.32 moves linux/autoconf.h generated/autoconf.h
+
+---
+ work/virtualbox-modules/vboxdrv/SUPDrvInternal.h   |    2 +-
+ .../vboxdrv/include/internal/iprt.h                |    2 +-
+ .../vboxdrv/include/iprt/types.h                   |    2 +-
+ .../vboxdrv/r0drv/linux/the-linux-kernel.h         |    2 +-
+ .../vboxnetadp/include/iprt/types.h                |    2 +-
+ .../vboxnetadp/r0drv/linux/the-linux-kernel.h      |    2 +-
+ .../vboxnetflt/include/iprt/types.h                |    2 +-
+ .../vboxnetflt/r0drv/linux/the-linux-kernel.h      |    2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/work/virtualbox-modules/vboxdrv/SUPDrvInternal.h b/work/virtualbox-modules/vboxdrv/SUPDrvInternal.h
+index be6d519..e6c328e 100644
+--- a/work/virtualbox-modules/vboxdrv/SUPDrvInternal.h
++++ b/work/virtualbox-modules/vboxdrv/SUPDrvInternal.h
+@@ -80,7 +80,7 @@
+     RT_C_DECLS_END
+ 
+ #elif defined(RT_OS_LINUX)
+-#   include <linux/autoconf.h>
++#   include <generated/autoconf.h>
+ #   include <linux/version.h>
+ #   if defined(CONFIG_MODVERSIONS) && !defined(MODVERSIONS)
+ #       define MODVERSIONS
+diff --git a/work/virtualbox-modules/vboxdrv/include/internal/iprt.h b/work/virtualbox-modules/vboxdrv/include/internal/iprt.h
+index 8f50563..422f1e5 100644
+--- a/work/virtualbox-modules/vboxdrv/include/internal/iprt.h
++++ b/work/virtualbox-modules/vboxdrv/include/internal/iprt.h
+@@ -43,7 +43,7 @@
+  && defined(MODULE) \
+  && !defined(RT_NO_EXPORT_SYMBOL)
+ # define bool linux_bool /* see r0drv/linux/the-linux-kernel.h */
+-# include <linux/autoconf.h>
++# include <generated/autoconf.h>
+ # if defined(CONFIG_MODVERSIONS) && !defined(MODVERSIONS)
+ #  include <linux/version.h>
+ #  define MODVERSIONS
+diff --git a/work/virtualbox-modules/vboxdrv/include/iprt/types.h b/work/virtualbox-modules/vboxdrv/include/iprt/types.h
+index cac3a98..6f7b6ae 100644
+--- a/work/virtualbox-modules/vboxdrv/include/iprt/types.h
++++ b/work/virtualbox-modules/vboxdrv/include/iprt/types.h
+@@ -97,7 +97,7 @@
+ #  define true linux_true
+ #  define false linux_false
+ #  define uintptr_t linux_uintptr_t
+-#  include <linux/autoconf.h>
++#  include <generated/autoconf.h>
+ #  include <linux/types.h>
+ #  include <linux/stddef.h>
+ #  undef uintptr_t
+diff --git a/work/virtualbox-modules/vboxdrv/r0drv/linux/the-linux-kernel.h b/work/virtualbox-modules/vboxdrv/r0drv/linux/the-linux-kernel.h
+index c463299..96e5c09 100644
+--- a/work/virtualbox-modules/vboxdrv/r0drv/linux/the-linux-kernel.h
++++ b/work/virtualbox-modules/vboxdrv/r0drv/linux/the-linux-kernel.h
+@@ -38,7 +38,7 @@
+ #include <iprt/types.h>
+ #define bool linux_bool
+ 
+-#include <linux/autoconf.h>
++#include <generated/autoconf.h>
+ #include <linux/version.h>
+ 
+ /* We only support 2.4 and 2.6 series kernels */
+diff --git a/work/virtualbox-modules/vboxnetadp/include/iprt/types.h b/work/virtualbox-modules/vboxnetadp/include/iprt/types.h
+index cac3a98..6f7b6ae 100644
+--- a/work/virtualbox-modules/vboxnetadp/include/iprt/types.h
++++ b/work/virtualbox-modules/vboxnetadp/include/iprt/types.h
+@@ -97,7 +97,7 @@
+ #  define true linux_true
+ #  define false linux_false
+ #  define uintptr_t linux_uintptr_t
+-#  include <linux/autoconf.h>
++#  include <generated/autoconf.h>
+ #  include <linux/types.h>
+ #  include <linux/stddef.h>
+ #  undef uintptr_t
+diff --git a/work/virtualbox-modules/vboxnetadp/r0drv/linux/the-linux-kernel.h b/work/virtualbox-modules/vboxnetadp/r0drv/linux/the-linux-kernel.h
+index c463299..96e5c09 100644
+--- a/work/virtualbox-modules/vboxnetadp/r0drv/linux/the-linux-kernel.h
++++ b/work/virtualbox-modules/vboxnetadp/r0drv/linux/the-linux-kernel.h
+@@ -38,7 +38,7 @@
+ #include <iprt/types.h>
+ #define bool linux_bool
+ 
+-#include <linux/autoconf.h>
++#include <generated/autoconf.h>
+ #include <linux/version.h>
+ 
+ /* We only support 2.4 and 2.6 series kernels */
+diff --git a/work/virtualbox-modules/vboxnetflt/include/iprt/types.h b/work/virtualbox-modules/vboxnetflt/include/iprt/types.h
+index cac3a98..6f7b6ae 100644
+--- a/work/virtualbox-modules/vboxnetflt/include/iprt/types.h
++++ b/work/virtualbox-modules/vboxnetflt/include/iprt/types.h
+@@ -97,7 +97,7 @@
+ #  define true linux_true
+ #  define false linux_false
+ #  define uintptr_t linux_uintptr_t
+-#  include <linux/autoconf.h>
++#  include <generated/autoconf.h>
+ #  include <linux/types.h>
+ #  include <linux/stddef.h>
+ #  undef uintptr_t
+diff --git a/work/virtualbox-modules/vboxnetflt/r0drv/linux/the-linux-kernel.h b/work/virtualbox-modules/vboxnetflt/r0drv/linux/the-linux-kernel.h
+index c463299..96e5c09 100644
+--- a/work/virtualbox-modules/vboxnetflt/r0drv/linux/the-linux-kernel.h
++++ b/work/virtualbox-modules/vboxnetflt/r0drv/linux/the-linux-kernel.h
+@@ -38,7 +38,7 @@
+ #include <iprt/types.h>
+ #define bool linux_bool
+ 
+-#include <linux/autoconf.h>
++#include <generated/autoconf.h>
+ #include <linux/version.h>
+ 
+ /* We only support 2.4 and 2.6 series kernels */
+-- 
+1.6.4.4
+
