@@ -7,7 +7,7 @@ EAPI=2
 SUPPORT_PYTHON_ABIS="1"
 PYTHON_DEPEND="python? 2:2.5"
 
-inherit mono python autotools
+inherit mono python autotools eutils
 
 DESCRIPTION="Ubuntu One GTK integration widgets"
 HOMEPAGE="https://launchpad.net/libubuntuone"
@@ -61,7 +61,20 @@ src_configure(){
 	python_execute_function -s do_src_configure
 }
 
+src_compile() {
+	do_src_compile() {
+		emake || die "emake failed"
+	}
+	python_execute_function -s do_src_compile
+}
+
 src_install() {
-	emake DESTDIR="${D}" install || die "install failed"
-	use mono && egacinstall "${D}/usr/lib/mono/ubuntuone-sharp-1.0/ubuntuone-sharp.dll"
+	do_src_install() {
+		emake DESTDIR="${D}" install || die "install failed"
+	}
+	python_execute_function -s do_src_install
+	for i in `ls ${WORKDIR}`
+	do
+		use mono && egacinstall ${WORKDIR}/$i/usr/$(get-libdir)/mono/ubuntuone-sharp-1.0/ubuntuone-sharp.dll
+	done
 }
