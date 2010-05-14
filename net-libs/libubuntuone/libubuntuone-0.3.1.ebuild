@@ -5,9 +5,10 @@
 EAPI=2
 
 SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 PYTHON_DEPEND="python? 2:2.5"
 
-inherit mono python autotools eutils
+inherit mono python autotools eutils multilib
 
 DESCRIPTION="Ubuntu One GTK integration widgets"
 HOMEPAGE="https://launchpad.net/libubuntuone"
