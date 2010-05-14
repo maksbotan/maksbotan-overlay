@@ -4,6 +4,7 @@
 
 EAPI=2
 
+SUPPORT_PYTHON_ABIS="1"
 PYTHON_DEPEND="python? 2:2.5"
 
 inherit mono python autotools
@@ -40,19 +41,24 @@ DEPEND="doc? (
 		app-text/gnome-doc-utils 
 		dev-util/gtk-doc 
 	)
-		dev-util/intltool 
+	dev-util/intltool 
 	${RDEPEND}" 
 
 src_prepare(){
 	epatch "${FILESDIR}"/libubuntuone-optional-bindings.patch
 	eautoreconf
+	python_copy_sources
 }
 
 src_configure(){
-	econf \
-	$(use_enable doc gtk-doc) \
-	$(use_enable mono mono-binding) \
-	$(use_enable python python-binding)
+	do_src_configure()
+	{
+		econf \
+		$(use_enable doc gtk-doc) \
+		$(use_enable mono mono-binding) \
+		$(use_enable python python-binding)
+	}
+	python_execute_function -s do_src_configure
 }
 
 src_install() {
