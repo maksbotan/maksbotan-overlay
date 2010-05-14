@@ -37,7 +37,7 @@ DEPEND=">=dev-lang/mono-2.0
 	)
 	gnome? ( gnome-base/gconf )
 	ubuntuone? ( 
-		sys-libs/ubuntuone 
+		sys-libs/ubuntuone[mono] 
 		>=media-sound/banshee-1.5.5
 	)"
 RDEPEND="${DEPEND}
@@ -72,8 +72,4 @@ src_configure() {
 
 src_install() {
 	base_src_install
-#	for i in `find ${D} -iname \*.dll`
-#	do
-#		egacinstall $i;
-#	done || die "Assembly install failed"
 }
