@@ -33,6 +33,7 @@ RDEPEND="dev-libs/dbus-glib
 	dev-python/notify-python
 	dev-python/pyxdg
 	dev-python/configglue
+	dev-python/simplejson
 "
 
 
