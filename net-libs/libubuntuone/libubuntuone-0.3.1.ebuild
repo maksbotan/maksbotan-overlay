@@ -73,8 +73,5 @@ src_install() {
 		emake DESTDIR="${D}" install || die "install failed"
 	}
 	python_execute_function -s do_src_install
-	for i in `ls ${WORKDIR}`
-	do
-		use mono && egacinstall ${WORKDIR}/$i/usr/$(get-libdir)/mono/ubuntuone-sharp-1.0/ubuntuone-sharp.dll
-	done
+	use mono && egacinstall "${D}"/usr/$(get_libdir)/mono/ubuntuone-sharp-1.0/ubuntuone-sharp.dll
 }
