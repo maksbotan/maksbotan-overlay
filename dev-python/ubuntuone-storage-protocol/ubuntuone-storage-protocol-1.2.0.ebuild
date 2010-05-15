@@ -10,13 +10,13 @@ PYTHON_DEPEND="2:2.6"
 
 inherit distutils python
 
-DESCRIPTION="Storage protocol fot Ubuntu One cloud file hosting"
+DESCRIPTION="Storage protocol for Ubuntu One cloud file hosting"
 HOMEPAGE="http://launchpad.net/ubuntuone-storage-protocol"
 SRC_URI="http://launchpad.net/${PN}/trunk/lucid-final/+download/${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~x86"
 IUSE=""
 
 RDEPEND="
