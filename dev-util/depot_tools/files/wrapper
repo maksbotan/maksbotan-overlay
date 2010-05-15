@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cd /opt/depot_tools/ && ./${0##/*/} "$@"
