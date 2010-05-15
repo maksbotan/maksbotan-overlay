@@ -21,12 +21,13 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 src_install() {
-	mkdir -p "${D}"/opt/"${PN}"
-	mkdir -p "${D}"/usr/bin
-	cp -R "${S}"/* "${D}"/opt/"${PN}"/
+	insinto /opt/depot_tools
+	doins -r *
+	mkdir -p "${D}"/opt/bin
+	#cp -R "${S}"/* "${D}"/opt/"${PN}"/
 	for i in chrome-update.py cpplint.py create-chromium-git-src gcl gclient git-cl git-cl-upload-hook git-gs git-try hammer presubmit_support.py trychange.py watchlists.py wtf
 	do
-		cp "${FILESDIR}"/wrapper "${D}"/usr/bin/$i
+		cp "${FILESDIR}"/wrapper "${D}"/opt/bin/$i
 	done
-	dodoc README README.gclient LICENSE
+	dodoc README README.gclient
 }
