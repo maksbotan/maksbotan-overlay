@@ -8,7 +8,7 @@ SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="2.4 2.5 3.*"
 PYTHON_DEPEND="*:2.6"
 
-inherit distutils
+inherit distutils python
 
 DESCRIPTION="Storage protocol fot Ubuntu One cloud file hosting"
 HOMEPAGE="http://launchpad.net/ubuntuone-storage-protocol"
