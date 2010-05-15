@@ -5,14 +5,14 @@
 EAPI=2
 
 SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="2.4 2.5 3.*"
 PYTHON_DEPEND="*:2.6"
-USE_PYTHON=${USE_PYTHON/2.[45]/}
 
 inherit distutils python
 
-DESCRIPTION="Ubuntu One GTK integration widgets"
-HOMEPAGE="http://one.ubuntu.com"
-SRC_URI="mirror://ubuntu/pool/main/u/${PN}/${PN}_${PV}.orig.tar.gz"
+DESCRIPTION="Storage protocol fot Ubuntu One cloud file hosting"
+HOMEPAGE="http://launchpad.net/ubuntuone-storage-protocol"
+SRC_URI="http://launchpad.net/${PN}/trunk/lucid-final/+download/${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
