@@ -22,12 +22,16 @@ RDEPEND="${DEPEND}"
 
 src_install() {
 	insinto /opt/depot_tools
-	doins -r *
+	doins -r * || die "install failed"
 	mkdir -p "${D}"/opt/bin
 	#cp -R "${S}"/* "${D}"/opt/"${PN}"/
 	for i in chrome-update.py cpplint.py create-chromium-git-src gcl gclient git-cl git-cl-upload-hook git-gs git-try hammer presubmit_support.py trychange.py watchlists.py wtf
 	do
-		cp "${FILESDIR}"/wrapper "${D}"/opt/bin/$i
+		exeinto /opt/depot_tools
+		doexe $i || die "install failed"
+		exeinto /opt/bin
+		#cp "${FILESDIR}"/wrapper "${D}"/opt/bin/$i
+		newexe "${FILESDIR}"/wrapper $i || die "install failed"
 	done
 	dodoc README README.gclient
 }
