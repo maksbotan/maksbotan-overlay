@@ -37,7 +37,7 @@ DEPEND=">=dev-lang/mono-2.0
 	)
 	gnome? ( gnome-base/gconf )
 	ubuntuone? ( 
-		sys-libs/ubuntuone[mono] 
+		sys-libs/libubuntuone[mono] 
 		>=media-sound/banshee-1.5.5
 	)"
 RDEPEND="${DEPEND}
