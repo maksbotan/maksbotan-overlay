@@ -18,7 +18,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND="dev-vcs/git[curl]"
 
 src_install() {
 	insinto /opt/depot_tools
