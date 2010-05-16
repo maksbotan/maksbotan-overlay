@@ -25,20 +25,19 @@ src_install() {
 	insinto /opt/depot_tools
 	doins \
 		git_cl_hooks.py presubmit_canned_checks.py breakpad.py \
-		PRESUBMIT.py gclient.py	gclient_scm.py profile.xml \
+		PRESUBMIT.py gclient.py	gclient_scm.py \
 		WATCHLISTS gclient_utils.py codereview.settings weekly scm.py \
 		|| die "install failed"
 	doins -r tests zsh-goodies third_party || die "install failed"
 	exeinto /opt/depot_tools
-	doexe \
-		chrome-update.py cpplint.py create-chromium-git-src \
+	local exes="chrome-update.py cpplint.py create-chromium-git-src \
 		drover drover.py gcl gcl.py gclient git-cl \
 		git-cl-upload-hook git-gs git-try hammer \
-		presubmit_support.py trychange.py watchlists.py wtf \
-		|| die "install failed"
-	for i in chrome-update.py cpplint.py create-chromium-git-src drover drover.py gcl gcl.py gclient git-cl git-cl-upload-hook git-gs git-try hammer presubmit_support.py trychange.py watchlists.py wtf
+		presubmit_support.py trychange.py watchlists.py wtf"
+	doexe $exes || die "install failed"
+	for i in $exes
 	do
-		make_wrapper $i /opt/"${PN}"/$i "" "" /opt/bin || die "make_wrapper failed"
+		make_wrapper $i /opt/${PN}/$i "" "" /opt/bin || die "make_wrapper failed"
 	done
 	dodoc README README.gclient || die "dodoc failed"
 }
