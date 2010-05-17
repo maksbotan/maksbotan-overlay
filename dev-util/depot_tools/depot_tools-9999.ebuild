@@ -15,20 +15,18 @@ SRC_URI=""
 
 LICENSE="BSD"
 SLOT="0"
-IUSE=""
-
 KEYWORDS=""
+IUSE=""
 
 RDEPEND=">=dev-vcs/git-1.6.6[curl]"
 
 src_install() {
 	insinto /opt/${PN}
-	doins \
+	doins -r \
 		git_cl_hooks.py presubmit_canned_checks.py breakpad.py \
 		PRESUBMIT.py gclient.py	gclient_scm.py \
 		WATCHLISTS gclient_utils.py codereview.settings weekly scm.py \
-		|| die "install failed"
-	doins -r tests zsh-goodies third_party || die "install failed"
+		tests zsh-goodies third_party || die "install failed"
 	exeinto /opt/${PN}
 	local exes="chrome-update.py cpplint.py create-chromium-git-src \
 		drover drover.py gcl gcl.py gclient git-cl \
