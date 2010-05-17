@@ -7,7 +7,7 @@ EAPI=2
 ESVN_REPO_URI="http://src.chromium.org/svn/trunk/tools/depot_tools"
 PYTHON_DEPEND="2"
 
-inherit python subversion eutils
+inherit eutils python subversion
 
 DESCRIPTION="Scripts to manage integration with Chromium repository and development process"
 HOMEPAGE="http://dev.chromium.org/developers/how-tos/depottools"
