@@ -1,0 +1,2 @@
+How to use overlay with layman:
+# layman -o http://github.com/maksbotan/maksbotan-overlay/raw/master/overlays.xml -f -a maksbotan-overlay
