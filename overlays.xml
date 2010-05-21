@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<layman>
+	<overlay
+					type = "git"
+					src  = "git://github.com/maksbotan/maksbotan-overlay.git"
+					contact = "kolmax94@gmail.com"
+					name = "maksbotan-overlay">
+		<link>
+			http://github.com/maksbotan/maksbotan-overlay
+		</link>
+		<description>Overlay of ebuilds written by maksbotan</description>
+	</overlay>
+</layman>
