@@ -4,9 +4,11 @@
 
 EAPI=2
 
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 PYTHON_DEPEND="python? 2:2.5"
 
-inherit mono python autotools
+inherit mono python autotools eutils multilib
 
 DESCRIPTION="Ubuntu One GTK integration widgets"
 HOMEPAGE="https://launchpad.net/libubuntuone"
@@ -40,22 +42,37 @@ DEPEND="doc? (
 		app-text/gnome-doc-utils 
 		dev-util/gtk-doc 
 	)
-		dev-util/intltool 
+	dev-util/intltool 
 	${RDEPEND}" 
 
 src_prepare(){
 	epatch "${FILESDIR}"/libubuntuone-optional-bindings.patch
 	eautoreconf
+	python_copy_sources
 }
 
 src_configure(){
-	econf \
-	$(use_enable doc gtk-doc) \
-	$(use_enable mono mono-binding) \
-	$(use_enable python python-binding)
+	do_src_configure()
+	{
+		econf \
+		$(use_enable doc gtk-doc) \
+		$(use_enable mono mono-binding) \
+		$(use_enable python python-binding)
+	}
+	python_execute_function -s do_src_configure
+}
+
+src_compile() {
+	do_src_compile() {
+		emake || die "emake failed"
+	}
+	python_execute_function -s do_src_compile
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "install failed"
-	use mono && egacinstall "${D}/usr/lib/mono/ubuntuone-sharp-1.0/ubuntuone-sharp.dll"
+	do_src_install() {
+		emake DESTDIR="${D}" install || die "install failed"
+	}
+	python_execute_function -s do_src_install
+	use mono && egacinstall "${D}"/usr/$(get_libdir)/mono/ubuntuone-sharp-1.0/ubuntuone-sharp.dll
 }

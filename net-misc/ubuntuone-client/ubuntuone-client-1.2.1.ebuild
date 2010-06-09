@@ -12,7 +12,7 @@ DESCRIPTION="Synchronization daemon for the Ubuntu One file sharing service"
 HOMEPAGE="http://one.ubuntu.com"
 SRC_URI="mirror://ubuntu/pool/main/u/${PN}/${PN}_${PV}.orig.tar.gz"
 
-LICENSE=""
+LICENSE="AGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug nautilus"
@@ -25,6 +25,15 @@ RDEPEND="dev-libs/dbus-glib
 	)
 	dev-python/ubuntuone-storage-protocol 
 	dev-python/oauth 
+	dev-python/pyinotify
+	dev-python/twisted-names
+	dev-python/twisted-web
+	dev-python/dbus-python
+	dev-python/gnome-keyring-python
+	dev-python/notify-python
+	dev-python/pyxdg
+	dev-python/configglue
+	dev-python/simplejson
 "
 
 
