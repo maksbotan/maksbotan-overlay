@@ -10,9 +10,9 @@ RESTRICT_PYTHON_ABIS="3.*"
 
 inherit python distutils
 
-DESCRIPTION="Python package providing tools for implementing Observer programming pattern"
+DESCRIPTION="Tools for implementing Observer programming pattern in Python"
 HOMEPAGE="http://home.gna.org/py-notify"
-SRC_URI="http://download.gna.org/py-notify/${P}.tar.gz"
+SRC_URI="http://download.gna.org/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
