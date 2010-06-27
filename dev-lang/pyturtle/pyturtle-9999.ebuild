@@ -22,4 +22,5 @@ IUSE=""
 RDEPEND="
 	dev-python/pygtk
 	dev-python/pygoocanvas
-	dev-python/py-notify"
+	dev-python/py-notify
+	dev-util/glade[python]"
