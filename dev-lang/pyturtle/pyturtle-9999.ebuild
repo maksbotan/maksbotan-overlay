@@ -6,6 +6,7 @@ EAPI=2
 
 EGIT_REPO_URI="git://github.com/maksbotan/pyturtle.git"
 PYTHON_DEPEND="2"
+SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="3.*"
 
 inherit git distutils python
@@ -17,10 +18,11 @@ SRC_URI=""
 LICENSE="GPL"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="+gtk"
 
 RDEPEND="
 	dev-python/pygtk
 	dev-python/pygoocanvas
 	dev-python/py-notify
-	dev-util/glade[python]"
+	dev-util/glade[python]
+	dev-python/ply"
