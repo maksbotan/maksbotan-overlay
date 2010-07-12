@@ -71,4 +71,6 @@ src_configure(){
 
 src_install(){
 	emake DESTDIR="${D}" install || die
+	find "${D}"/$(get_libdir) -name \*.la -delete
+	find "${D}"/$(getpam_mod_dir) -name \*.la -delete
 }
