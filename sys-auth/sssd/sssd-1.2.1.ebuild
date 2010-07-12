@@ -16,7 +16,7 @@ SRC_URI="http://fedorahosted.org/released/${PN}/${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~x86"
-IUSE="trace doc test python selinux nscd locator openssl keyutils dbus semanage"
+IUSE="trace doc test python selinux nscd locator openssl keyutils semanage"
 
 DEPEND="
 	test? ( dev-libs/check )
@@ -39,7 +39,7 @@ DEPEND="
 	keyutils? ( sys-apps/keyutils )
 	net-dns/bind-tools
 	dev-libs/cyrus-sasl
-	dbus? ( sys-apps/dbus )
+	sys-apps/dbus
 	selinux? ( dev-libs/selinux )
 	semanage? ( dev-libs/semanage )"
 RDEPEND="${DEPEND}"
