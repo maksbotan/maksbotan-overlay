@@ -15,7 +15,7 @@ SRC_URI="http://fedorahosted.org/released/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="trace doc test python selinux nscd locator openssl keyutils semanage"
 
 DEPEND="
@@ -70,6 +70,12 @@ src_configure(){
 
 src_install(){
 	emake DESTDIR="${D}" install || die
-	find "${D}"/$(get_libdir) -name \*.la -delete
-	find "${D}"/$(getpam_mod_dir) -name \*.la -delete
+	find "${ED}"/$(get_libdir) -name \*.la -delete
+	find "${ED}"/$(getpam_mod_dir) -name \*.la -delete
+	insinto "${EPREFIX}"/etc/sssd
+	insopts -m600
+	doins "${S}"/src/examples/sssd.conf
+	insinto "${EPREFIX}"/etc/logrotate.d
+	insopts -m644
+	newins "${S}"/src/examples/logrotate sssd
 }
