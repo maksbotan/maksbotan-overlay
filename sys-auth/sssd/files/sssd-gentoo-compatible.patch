@@ -45,23 +45,62 @@ index d77c731..6918323 100644
  
  dist_sssdconf_DATA = \
 diff --git a/src/configure.ac b/src/configure.ac
-index 8ee2da4..1877b63 100644
+index 8ee2da4..da78a29 100644
 --- a/src/configure.ac
 +++ b/src/configure.ac
-@@ -56,6 +56,13 @@ AC_ARG_ENABLE([nsslibdir], [AS_HELP_STRING([--enable-nsslibdir],
+@@ -56,22 +56,12 @@ AC_ARG_ENABLE([nsslibdir], [AS_HELP_STRING([--enable-nsslibdir],
                [nsslibdir=$libdir])
  AC_SUBST(nsslibdir)
  
+-m4_include(conf_macros.m4)
+-WITH_DB_PATH
+-WITH_PLUGIN_PATH
+-WITH_PID_PATH
+-WITH_LOG_PATH
+-WITH_PUBCONF_PATH
+-WITH_PIPE_PATH
+-WITH_INIT_DIR
+-WITH_TEST_DIR
+-WITH_MANPAGES
+-WITH_XML_CATALOG
+-WITH_KRB5_PLUGIN_PATH
+-WITH_PYTHON_BINDINGS
+-WITH_SELINUX
+-WITH_NSCD
+-WITH_SEMANAGE
 +#Set the PAM module install path
 +AC_ARG_ENABLE([pammoddir], [AS_HELP_STRING([--enable-pammoddir],
 +                                        [Where to install pam modules ($libdir/security)])],
 +              [pammoddir=$enableval],
 +              [pammoddir=$libdir/security])
 +AC_SUBST(pammoddir)
+ 
+ m4_include([external/platform.m4])
+ m4_include([external/pkg.m4])
+@@ -98,6 +88,23 @@ m4_include([external/libkeyutils.m4])
+ m4_include([external/nsupdate.m4])
+ m4_include([util/signal.m4])
+ 
++m4_include(conf_macros.m4)
++WITH_DB_PATH
++WITH_PLUGIN_PATH
++WITH_PID_PATH
++WITH_LOG_PATH
++WITH_PUBCONF_PATH
++WITH_PIPE_PATH
++WITH_INIT_DIR
++WITH_TEST_DIR
++WITH_MANPAGES
++WITH_XML_CATALOG
++WITH_KRB5_PLUGIN_PATH
++WITH_PYTHON_BINDINGS
++WITH_SELINUX
++WITH_NSCD
++WITH_SEMANAGE
 +
- m4_include(conf_macros.m4)
- WITH_DB_PATH
- WITH_PLUGIN_PATH
+ PKG_CHECK_MODULES([DBUS],[dbus-1])
+ dnl if test -n "`$PKG_CONFIG --modversion dbus-1 | grep '^0\.'`" ; then
+ if ! $PKG_CONFIG --atleast-version 1.0.0 dbus-1; then
 diff --git a/src/external/libtevent.m4 b/src/external/libtevent.m4
 index 6a0e36a..db660a2 100644
 --- a/src/external/libtevent.m4

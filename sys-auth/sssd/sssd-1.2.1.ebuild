@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 
 #EGIT_REPO_URI="/home/maks/sssd-${PV}/.git"
 PYTHON_DEPEND="python? *:2.4"
@@ -56,8 +56,7 @@ src_prepare(){
 src_configure(){
 	econf \
 		$(use trace && echo '--enable-trace=7') \
-		--with-init-dir=/etc/init.d \
-		--with-pid-path=/var/run \
+		--localstatedir=${EPREFIX}/var \
 		--enable-nsslibdir=/$(get_libdir) \
 		--enable-pammoddir=$(getpam_mod_dir) \
 		$(use_with python python-bindings) \
