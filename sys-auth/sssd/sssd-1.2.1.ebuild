@@ -7,7 +7,7 @@ EAPI=2
 #EGIT_REPO_URI="/home/maks/sssd-${PV}/.git"
 PYTHON_DEPEND="python? *:2.4"
 
-inherit autotools python confutils #git
+inherit autotools python confutils multilib pam #git
 
 DESCRIPTION="System Security Services Daemon - provide access to identity and authentication"
 HOMEPAGE="http://fedorahosted.org/sssd/"
@@ -45,7 +45,6 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 pkg_setup(){
-	confutils_init
 	confutils_use_depend_all semanage selinux
 }
 
@@ -59,6 +58,8 @@ src_configure(){
 		$(use trace && echo '--enable-trace=7') \
 		--with-init-dir=/etc/init.d \
 		--with-pid-path=/var/run \
+		--enable-nsslibdir=/$(get_libdir) \
+		--enable-pammoddir=$(getpam_mod_dir) \
 		$(use_with python python-bindings) \
 		$(use_with selinux) \
 		$(use_with selinux semanage) \
