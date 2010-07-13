@@ -4,10 +4,9 @@
 
 EAPI=3
 
-#EGIT_REPO_URI="/home/maks/sssd-${PV}/.git"
 PYTHON_DEPEND="python? *:2.4"
 
-inherit autotools python confutils multilib pam #git
+inherit autotools python confutils multilib pam
 
 DESCRIPTION="System Security Services Daemon - provide access to identity and authentication"
 HOMEPAGE="http://fedorahosted.org/sssd/"
@@ -56,26 +55,27 @@ src_prepare(){
 src_configure(){
 	econf \
 		$(use trace && echo '--enable-trace=7') \
-		--localstatedir=${EPREFIX}/var \
-		--enable-nsslibdir=/$(get_libdir) \
-		--enable-pammoddir=$(getpam_mod_dir) \
+		--localstatedir=/"${EPREFIX}"/var \
+		--enable-nsslibdir=/"${EPREFIX}"/$(get_libdir) \
+		--enable-pammoddir=/"${EPREFIX}"/$(getpam_mod_dir) \
 		$(use_with python python-bindings) \
 		$(use_with selinux) \
 		$(use_with selinux semanage) \
 		$(use_with nscd) \
 		$(use_enable locator krb5-locator-plugin) \
 		$(use_enable openssl crypto) \
-		$(use_enable doc manpages) || die
+		$(use_enable doc manpages) 
+		-C
 }
 
 src_install(){
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${ED}" install || die
 	find "${ED}"/$(get_libdir) -name \*.la -delete
 	find "${ED}"/$(getpam_mod_dir) -name \*.la -delete
-	insinto "${EPREFIX}"/etc/sssd
+	insinto /"${EPREFIX}"/etc/sssd
 	insopts -m600
 	doins "${S}"/src/examples/sssd.conf
-	insinto "${EPREFIX}"/etc/logrotate.d
+	insinto /"${EPREFIX}"/etc/logrotate.d
 	insopts -m644
 	newins "${S}"/src/examples/logrotate sssd
 }
