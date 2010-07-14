@@ -64,7 +64,7 @@ src_configure(){
 		$(use_with nscd) \
 		$(use_enable locator krb5-locator-plugin) \
 		$(use_enable openssl crypto) \
-		$(use_enable doc manpages) 
+		$(use_enable doc manpages) \
 		-C
 }
 

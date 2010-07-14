@@ -44,6 +44,20 @@ index d77c731..6918323 100644
  
  
  dist_sssdconf_DATA = \
+diff --git a/src/conf_macros.m4 b/src/conf_macros.m4
+index 65de7fb..aa57802 100644
+--- a/src/conf_macros.m4
++++ b/src/conf_macros.m4
+@@ -108,6 +108,9 @@ AC_DEFUN([WITH_INIT_DIR],
+                 ]
+                )
+     initdir="${sysconfdir}/rc.d/init.d"
++    if test x$osname == xgentoo; then
++        initdir="${sysconfdir}/init.d"
++    fi
+     if test x"$with_init_dir" != x; then
+         initdir=$with_init_dir
+     fi
 diff --git a/src/configure.ac b/src/configure.ac
 index 8ee2da4..da78a29 100644
 --- a/src/configure.ac
