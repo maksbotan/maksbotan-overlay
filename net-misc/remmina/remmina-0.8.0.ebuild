@@ -24,3 +24,17 @@ RDEPEND="
 DEPEND="${DEPEND}
 	dev-util/intltool"
 
+src_configure(){
+	econf \
+		$(use_enable debug) \
+		$(use_enable nls) \
+		$(use_enable avahi) \
+		$(use_enable vte) \
+		$(use_enable unique) \
+		$(use_enable ssh) \
+		$(use_enable gcrypt)
+}
+
+src_install(){
+	emake DESTDIR="${ED}" install
+}
