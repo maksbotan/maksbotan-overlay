@@ -4,6 +4,8 @@
 
 EAPI=3
 
+inherit gnome2-utils
+
 DESCRIPTION="GTK+ Remote Desktop Client"
 HOMEPAGE="http://remmina.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
@@ -32,9 +34,23 @@ src_configure(){
 		$(use_enable vte) \
 		$(use_enable unique) \
 		$(use_enable ssh) \
-		$(use_enable gcrypt)
+		$(use_enable gcrypt) \
+		--disable-dependency-tracking
 }
 
 src_install(){
 	emake DESTDIR="${ED}" install
+	dodoc AUTHORS ChangeLog README
+}
+
+pkg_preinst(){
+	gnome2_icon_savelist
+}
+
+pkg_postinst(){
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
