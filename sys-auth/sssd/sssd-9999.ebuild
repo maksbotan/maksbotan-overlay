@@ -15,7 +15,6 @@ SRC_URI=""
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE="trace doc python selinux aux-info lpad sqlite3"
 
 DEPEND=">sys-libs/glibc-2.4
